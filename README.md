@@ -9,10 +9,6 @@ A simple and customizable password generator built with React.js. This tool allo
 - **Copy to Clipboard**: Easily copy generated passwords to your clipboard.
 - **Responsive Design**: Centered and clean interface for all screen sizes.
 
-## Demo
-
-[Live Demo](#) (Add the URL of your deployed project here)
-
 ## Installation
 
 To run the project locally, follow these steps:
