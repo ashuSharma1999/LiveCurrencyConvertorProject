@@ -1,3 +1,28 @@
+# Password Generator
+
+A simple and customizable password generator built with React.js. This tool allows users to generate secure passwords of varying lengths and complexities, including numeric, alphanumeric, and special character options.
+
+## Features
+
+- **Customizable Password Options**: Choose from numeric, alphanumeric, or special character passwords.
+- **Adjustable Length**: Set the password length between 1 and 20 characters.
+- **Copy to Clipboard**: Easily copy generated passwords to your clipboard.
+- **Responsive Design**: Centered and clean interface for all screen sizes.
+
+## Demo
+
+[Live Demo](#) (Add the URL of your deployed project here)
+
+## Installation
+
+To run the project locally, follow these steps:
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/ashuSharma1999/passGenerator.git
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
