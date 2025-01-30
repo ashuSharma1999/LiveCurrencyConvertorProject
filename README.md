@@ -1,91 +1,69 @@
-# Password Generator
+# Currency Converter
 
-A simple and customizable password generator built with React.js. This tool allows users to generate secure passwords of varying lengths and complexities, including numeric, alphanumeric, and special character options.
+## 🚀 Overview
+The **Currency Converter** is a React-based web application that allows users to convert amounts between different currencies using real-time exchange rates.
 
-## Features
+## 📌 Features
+- Convert between multiple currencies.
+- Swap currency selections instantly.
+- Fetch real-time exchange rates using an API.
+- Responsive and user-friendly UI.
+- Clear button to reset inputs.
 
-- **Customizable Password Options**: Choose from numeric, alphanumeric, or special character passwords.
-- **Adjustable Length**: Set the password length between 1 and 20 characters.
-- **Copy to Clipboard**: Easily copy generated passwords to your clipboard.
-- **Responsive Design**: Centered and clean interface for all screen sizes.
+## 🏗️ Tech Stack
+- **React** (Hooks: `useState`, `useEffect`)
+- **CSS / Tailwind** for styling
+- **Fetch API** for currency data
 
-## Installation
+## 📂 Project Structure
+```
+/currency-converter
+ ├── /src
+ │   ├── /components    # UI Components (e.g., InputBox)
+ │   ├── /hooks         # Custom Hooks (e.g., useCurrencyInfo)
+ │   ├── App.js         # Main application
+ │   ├── index.js       # Entry point
+ ├── /public
+ │   ├── images         # Static images
+ ├── package.json       # Dependencies & scripts
+ ├── README.md          # Project documentation
+```
 
-To run the project locally, follow these steps:
+## ⚙️ Installation
+```bash
+git clone https://github.com/YOUR_GITHUB_USERNAME/currency-converter.git
+cd currency-converter
+npm install
+npm start
+```
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/ashuSharma1999/passGenerator.git
+## 🌍 API Usage
+This project fetches real-time exchange rates from:
+```
+https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/{currency}.json
+```
 
+## 📸 Screenshots
+![Currency Converter UI](https://raw.githubusercontent.com/YOUR_GITHUB_USERNAME/currency-converter/main/public/images/screenshot.png)
 
+## 🛠️ Available Scripts
+- `npm start` – Runs the app in development mode.
+- `npm build` – Builds the app for production.
 
-# Getting Started with Create React App
+## 💡 Future Enhancements
+- Dark mode support
+- Historical exchange rate tracking
+- Multi-language support
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 🤝 Contributing
+1. Fork the repository
+2. Create a new branch (`feature-branch`)
+3. Commit your changes
+4. Push to the branch
+5. Open a Pull Request
 
-## Available Scripts
+## 📄 License
+This project is open-source under the MIT License.
 
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+---
+Made with ❤️ by **Ashvini Sharma**

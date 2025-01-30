@@ -1,150 +1,134 @@
-import React, { useCallback, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
+import { InputBox } from "./components";
+import useCurrencyInfo from './hooks/useCurrencyInfo';
+import img from './images/currency.jpg'
 
-const CenteredDropdownAndPasswordGenerator = () => {
-  const [selectedOption, setSelectedOption] = useState("alphanumeric");
-  const [passwordLength, setPasswordLength] = useState(8); // Default password length
-  const [generatedPassword, setGeneratedPassword] = useState("");
-  const inputRef=useRef(null);
+const App = () => {
+  const [from, setFrom] = useState("usd");
+  const [amount, setAmount] = useState(0);
+  const [convertedAmount, setConvertedAmount] = useState(0);
+  const [to, setTo] = useState("inr");
 
-  const handleDropdownChange = (event) => {
-    setSelectedOption(event.target.value);
+  const currencyInfo = useCurrencyInfo(from);
+  const options = Object.keys(currencyInfo);
+
+  const swap = () => {
+    setFrom(to);
+    setTo(from);
+    setConvertedAmount(amount);
+    setAmount(convertedAmount);
   };
 
-  const handlePasswordLengthChange = (event) => {
-    const value = Math.max(1, Math.min(20, Number(event.target.value))); // Restrict length between 1 and 20
-    setPasswordLength(value);
+  const convert = () => {
+    setConvertedAmount(amount * currencyInfo[to]);
   };
 
-  const handleGeneratePassword=useCallback(()=>{
-    let charset = "";
-    if (selectedOption === "numeric") {
-      charset = "0123456789";
-    } else if (selectedOption === "alphanumeric") {
-      charset = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-    } else if (selectedOption === "special-character") {
-      charset =
-        "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+~`|}{[]:;?><,./-=";
-    } else {
-      alert("Please select a data type for password generation.");
-      return;
-    }
-
-    let password = "";
-    for (let i = 0; i < passwordLength; i++) {
-      const randomIndex = Math.floor(Math.random() * charset.length);
-      password += charset[randomIndex];
-    }
-    setGeneratedPassword(password);
-  },[passwordLength,selectedOption])
-
-
-  const handleCopy = () => {
-    if (generatedPassword) {
-      inputRef.current.select();
-      window.navigator.clipboard.writeText(generatedPassword);
-      alert("Copied to clipboard: " + generatedPassword);
-    } else {
-      alert("No password to copy. Please generate one first.");
-    }
+  const clear = () => {
+    setAmount(0);
+    setConvertedAmount(0);
   };
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        height: "100vh",
-      }}
-    >
-      {/* Dropdown */}
-      <label htmlFor="data-type" style={{ marginBottom: "10px" }}>
-        Select Data Type:
-      </label>
-      <select
-        id="data-type"
-        value={selectedOption}
-        onChange={handleDropdownChange}
-        style={{ padding: "5px", marginBottom: "20px", width: "200px" }}
-      >
-        <option value="">-- Select --</option>
-        <option value="numeric">Numeric</option>
-        <option value="alphanumeric">AlphaNumeric</option>
-        <option value="special-character">Special Character</option>
-      </select>
+    <div style={styles.container}>
+      {/* Left Section: Image */}
+      <div style={styles.leftSection}>
+        <img
+          src={img}
+          alt="Currency Exchange"
 
-      {/* Password Length Input */}
-      <label htmlFor="password-length" style={{ marginBottom: "10px" }}>
-        Enter Password Length:
-      </label>
-      <input
-        id="password-length"
-        type="number"
-        value={passwordLength}
-        onChange={handlePasswordLengthChange}
-        style={{
-          padding: "5px",
-          width: "200px",
-          marginBottom: "20px",
-          borderRadius: "5px",
-          border: "1px solid #ccc",
-        }}
-        min="1"
-        max="50"
-      />
+        />
+      </div>
 
-      {/* Generate Password */}
-      <button
-        onClick={handleGeneratePassword}
-        style={{
-          padding: "8px 15px",
-          backgroundColor: "#007BFF",
-          color: "white",
-          border: "none",
-          borderRadius: "5px",
-          cursor: "pointer",
-          marginBottom: "20px",
-        }}
-      >
-        Generate Password
-      </button>
+      {/* Right Section: Currency Conversion */}
+      <div style={styles.rightSection}>
+        <h2 style={styles.heading}>Currency Converter</h2>
 
-      {/* Display Generated Password and Copy Button */}
-      {generatedPassword && (
-        <div style={{ display: "flex", alignItems: "center", marginBottom: "20px" }}>
-          <input
-            type="text"
-            value={generatedPassword}
-            readOnly
-            ref={inputRef}
-            style={{
-              padding: "5px",
-              width: "200px",
-              marginRight: "10px",
-              borderRadius: "5px",
-              border: "1px solid #ccc",
-            }}
-          />
-          <button
-            onClick={handleCopy}
-            style={{
-              padding: "8px 15px",
-              backgroundColor: "#28a745",
-              color: "white",
-              border: "none",
-              borderRadius: "5px",
-              cursor: "pointer",
-            }}
-          >
-            Copy
+        <InputBox
+          label="From"
+          onAmountChange={(amount) => setAmount(amount)}
+          className="w-full outline-none"
+          amount={amount}
+          onChange={(e) => setAmount(e.target.value)}
+          currenciesOption={options}
+          onCurrencyChange={(currency) => setFrom(currency)}
+          selectCurrency={from}
+        />
+
+        <div style={{ textAlign: "center", margin: "10px 0" }}>
+          <button style={styles.button} onClick={swap}>
+            Swap
           </button>
         </div>
-      )}
 
-    
+        <InputBox
+          label="To"
+          disable={true}
+          className="w-full outline-none"
+          amount={convertedAmount}
+          currenciesOption={options}
+          onCurrencyChange={(currency) => setTo(currency)}
+          selectCurrency={to}
+        />
+
+        <div style={{ textAlign: "center", marginTop: "10px" }}>
+          <button style={styles.button} onClick={convert}>
+            Convert {from.toUpperCase()} to {to.toUpperCase()}
+          </button>
+          <button style={{ ...styles.button, backgroundColor: "red" }} onClick={clear}>
+            Clear
+          </button>
+        </div>
+      </div>
     </div>
   );
 };
 
-export default CenteredDropdownAndPasswordGenerator;
+// CSS-in-JS styles
+const styles = {
+  container: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    // height: "100vh",
+    background: "#f4f4f4",
+    padding: "20px",
+  },
+  leftSection: {
+    flex: 1,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  image: {
+    width: "100vw",
+    height: "100vh",
+    borderRadius: "0px",
+    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
+  },
+  rightSection: {
+    flex: 1,
+    background: "#fff",
+    padding: "30px",
+    borderRadius: "10px",
+    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
+    textAlign: "center",
+  },
+  heading: {
+    marginBottom: "20px",
+    fontSize: "24px",
+    fontWeight: "bold",
+  },
+  button: {
+    width: "100%",
+    backgroundColor: "#007BFF",
+    color: "#fff",
+    padding: "10px",
+    border: "none",
+    borderRadius: "5px",
+    cursor: "pointer",
+    marginBottom: "10px",
+  },
+};
+
+export default App;
