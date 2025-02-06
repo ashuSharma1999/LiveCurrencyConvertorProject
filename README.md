@@ -44,7 +44,7 @@ https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/{cur
 ```
 
 ## 📸 Screenshots
-![Currency Converter UI](https://raw.githubusercontent.com/YOUR_GITHUB_USERNAME/currency-converter/main/public/images/screenshot.png)
+![image](https://github.com/user-attachments/assets/112f8528-2cd9-44bd-94ac-afa376941c0f)
 
 ## 🛠️ Available Scripts
 - `npm start` – Runs the app in development mode.
